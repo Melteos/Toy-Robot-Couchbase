@@ -1,6 +1,11 @@
 package com.trendyol.toyrobot.domain;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import com.trendyol.toyrobot.domain.directions.East;
+import com.trendyol.toyrobot.domain.directions.North;
+import com.trendyol.toyrobot.domain.directions.South;
+import com.trendyol.toyrobot.domain.directions.West;
 import org.junit.jupiter.api.Test;
 
 public class RoverTest {
@@ -10,7 +15,7 @@ public class RoverTest {
         Rover rover = createNorthRover();
         assertEquals(0, rover.getX());
         assertEquals(0, rover.getY());
-        assertEquals(Compass.NORTH, rover.getCompass());
+        assertEquals("NORTH", rover.getCompass().getName());
     }
 
     @Test
@@ -45,68 +50,68 @@ public class RoverTest {
     public void should_turn_left_when_compass_is_north() {
         Rover rover = createNorthRover();
         rover.turnLeft();
-        assertEquals(Compass.WEST, rover.getCompass());
+        assertEquals("WEST", rover.getCompass().getName());
     }
 
     @Test
     public void should_turn_left_when_compass_is_west() {
         Rover rover = createWestRover();
         rover.turnLeft();
-        assertEquals(Compass.SOUTH, rover.getCompass());
+        assertEquals("SOUTH", rover.getCompass().getName());
     }
 
     @Test
     public void should_turn_left_when_compass_is_south() {
         Rover rover = createSouthRover();
         rover.turnLeft();
-        assertEquals(Compass.EAST, rover.getCompass());
+        assertEquals("EAST", rover.getCompass().getName());
     }
 
     @Test
     public void should_turn_left_when_compass_is_east() {
         Rover rover = createEastRover();
         rover.turnLeft();
-        assertEquals(Compass.NORTH, rover.getCompass());
+        assertEquals("NORTH", rover.getCompass().getName());
     }
 
     @Test
     public void should_turn_right_when_compass_is_north () {
         Rover rover = createNorthRover();
         rover.turnRight();
-        assertEquals(Compass.EAST, rover.getCompass());
+        assertEquals("EAST", rover.getCompass().getName());
     }
 
     @Test
     public void should_turn_right_when_compass_is_east() {
         Rover rover = createEastRover();
         rover.turnRight();
-        assertEquals(Compass.SOUTH, rover.getCompass());
+        assertEquals("SOUTH", rover.getCompass().getName());
     }
 
     @Test
     public void should_turn_right_when_compass_is_south() {
         Rover rover = createSouthRover();
         rover.turnRight();
-        assertEquals(Compass.WEST, rover.getCompass());
+        assertEquals("WEST", rover.getCompass().getName());
     }
 
     @Test
     public void should_turn_right_when_compass_is_west () {
         Rover rover = createWestRover();
         rover.turnRight();
-        assertEquals(Compass.NORTH, rover.getCompass());
+        assertEquals("NORTH", rover.getCompass().getName());
     }
 
     private Rover createWestRover() {
-        return new Rover(0, 0, Compass.WEST);
+        return new Rover(new West(0,0));
     }
 
     private Rover createSouthRover() {
-        return new Rover(0, 0, Compass.SOUTH);
+        return new Rover(new South(0,0));
     }
 
     private Rover createEastRover() {
-        return new Rover(0, 0, Compass.EAST);
+        return new Rover(new East(0,0));
     }
 
     private Rover createNorthRover() {

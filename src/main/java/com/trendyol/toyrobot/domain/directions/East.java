@@ -1,11 +1,17 @@
 package com.trendyol.toyrobot.domain.directions;
 
-public class East extends Direction implements Mover {
+public class East extends Compass {
 
-    public East(Direction direction) {
-        this.x = direction.x;
-        this.y = direction.y;
-        this.compass = Compass.EAST;
+    public East(Compass compass) {
+        this.x = compass.x;
+        this.y = compass.y;
+        this.name = "EAST";
+    }
+
+    public East(int x, int y) {
+        this.x = x;
+        this.y = y;
+        this.name = "EAST";
     }
 
     @Override
@@ -14,14 +20,14 @@ public class East extends Direction implements Mover {
     }
 
     @Override
-    public Direction turnRight() {
-        this.compass = Compass.SOUTH;
+    public Compass turnRight() {
+        this.name = "SOUTH";
         return new South(this);
     }
 
     @Override
-    public Direction turnLeft() {
-        this.compass = Compass.NORTH;
+    public Compass turnLeft() {
+        this.name = "NORTH";
         return new North(this);
     }
 }
